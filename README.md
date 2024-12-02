@@ -1,13 +1,71 @@
-Esse repositório é para o projeto de faculdade de banco de dados onde estarei utilizando mongodb, um banco de dados nosql
+# Projeto de Banco de Dados com MongoDB
 
-Para rodar esse projeto você escontrará dois diretórios iniciais o gymesc_core e o gymesc_web
-o gymesc_web terá o projeto web com o visual utilizando angular-cli rodando em um docker, então estando no diretório dele você pode rodar no terminal: "docker compose up --build" e isso irá subir o projeto web no http://localhost:4200
+Este repositório contém o projeto de faculdade de banco de dados, utilizando **MongoDB**, um banco de dados NoSQL.
 
-Agora no gymesc_web é necessário você descobrir seu IPv4 privado local que a princípio começa com 192.168.XXX.XXX, descobrindo ele, você pode ir no arquivo que está em gymesc_core/src/main/resources/application.properties
-Nesse arquivo está um atributo declarado da seguinte forma: spring.data.mongodb.uri=mongodb://192.168.100.33:27017, na parte de IP você pode substituir pelo seu
-Feito isso você pode rodar o comando "docker compose up --build" que isso irá subir a api na porta 8080 e o banco de dados mongodb na porta 27017
+## Estrutura do Projeto
 
-Haverá também na raiz desse repositório um arquivo mongodb.dump que terá conteúdo de banco de dados então você deve aplicar esse dump ao banco de dados caso queira ja iniciar com alguns dados já feitos
-daí para utiliza-los você vai no projeto web pra fazer login e coloque essas credenciais:
-email: demo@gmail.com
-senha: 1
+O repositório está organizado em dois diretórios principais:
+
+1. **gymesc_core**: Contém o backend da aplicação.
+2. **gymesc_web**: Contém o frontend da aplicação, desenvolvido com Angular.
+
+---
+
+## Como Rodar o Projeto
+
+### 1. Rodando o Frontend (`gymesc_web`)
+
+O frontend utiliza **Angular CLI** e roda em um container Docker. Para executar:
+
+1. Navegue até o diretório `gymesc_web`:
+
+   ```bash
+   cd gymesc_web
+   ```
+2. Execute o comando para subir o projeto:
+
+   ```bash
+   docker compose up --build
+   ```
+3. O frontend estará disponível em: http://localhost:4200
+
+---
+
+### 2. Configurando o Backend (`gymesc_core`)
+
+Antes de executar o backend, é necessário configurar o acesso ao banco de dados MongoDB:
+
+1. Descubra o **IPv4 privado local** da sua máquina:
+   - Normalmente começa com `192.168.XXX.XXX`.
+   - No Windows, você pode usar o comando `ipconfig`.
+   - No Linux/Mac, use o comando `ifconfig` ou `ip addr`.
+
+2. Edite o arquivo de `application.properties` no diretório `gymesc_core/src/main/resources/` e substitua o valor de `spring.data.mongodb.uri` pelo IP da sua máquina, seguindo o formato `mongodb://<SEU_IP_PRIVADO>:27017`.
+
+3. Navegue até o diretório `gymesc_core` e suba o backend e o MongoDB usando Docker.
+   ```bash
+   cd gymesc_web
+   docker compose up --build
+   ```
+
+4. O backend estará disponível na porta `8080` e o MongoDB na porta `27017`.
+
+---
+
+### 3. Restaurando o Banco de Dados
+
+Na raiz deste repositório, você encontrará o arquivo `mongodb.dump`, que contém dados iniciais para o banco de dados. Para restaurar esses dados:
+
+1. Realize a restauração do dump no MongoDB dentro do container.
+2. Após restaurar os dados, você pode fazer login com as seguintes credenciais:
+
+   - **Email**: `demo@gmail.com`
+   - **Senha**: `1`
+
+---
+
+## Tecnologias Utilizadas
+
+- **Frontend**: Angular CLI, rodando em Docker.
+- **Backend**: Java e Spring, com integração ao MongoDB.
+- **Banco de Dados**: MongoDB.
