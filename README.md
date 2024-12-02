@@ -69,3 +69,10 @@ Na raiz deste repositório, você encontrará o arquivo `mongodb.dump`, que cont
 - **Frontend**: Angular CLI, rodando em Docker.
 - **Backend**: Java e Spring, com integração ao MongoDB.
 - **Banco de Dados**: MongoDB.
+
+## Restaurando o dump
+
+Para restaurar o dump no banco de dados caso esteja com dificuldade, talvez isso lhe ajude
+
+    docker cp mongodb.dump gymesc_core-mongodb-1:/mongodb.dump
+    docker exec -i gymesc_core-mongodb-1 /usr/bin/mongorestore --uri "mongodb://localhost:27017/gymesc" --archive=mongodb.dump
