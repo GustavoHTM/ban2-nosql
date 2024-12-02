@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=gymesc
+    networks:
+      - springboot-mongodb-network
+
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/data/mongodb
+    networks:
+      - springboot-mongodb-network
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      interval: 10s
+      retries: 5
+
+volumes:
+  mongodb-data:
+
+networks:
+  springboot-mongodb-network:
+    name: springboot-mongodb-network

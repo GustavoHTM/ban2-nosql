@@ -1,0 +1,13 @@
+<form
+    method="{{ method }}"
+    action="{{ action }}"
+    onsubmit="return false"
+    [ngClass]="{'inline': inline}"
+>
+    <main>
+        <ng-content></ng-content>
+    </main>
+    <footer>
+        <ng-content select="[slot='footer']"></ng-content>
+    </footer>
+</form>
