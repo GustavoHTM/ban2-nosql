@@ -44,7 +44,7 @@ Antes de executar o backend, é necessário configurar o acesso ao banco de dado
 
 3. Navegue até o diretório `gymesc_core` e suba o backend e o MongoDB usando Docker.
    ```bash
-   cd gymesc_web
+   cd gymesc_core
    docker compose up --build
    ```
 
